@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChartJS</title>
+    <!--Link para código do ChartsJS-->
+
+    <!-- FONTES QUE USEI PARA OS DADOS
+    https://educacao.uol.com.br/noticias/2020/01/17/enem-2019-53-candidatos-tiraram-nota-mil-na-redacao-143-mil-tiraram-zero.htm
+    -->
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+
+    <style> 
+        /**/
+        .meu-grafico {
+            width: 60%;
+            margin: auto;
+            display: flex;
+            align-items: center;
+        }
+
+        #myChart {
+            margin-top: 100px;
+        }
+        
+    </style>
+
+</head>
+
+<body style="background-color: #232323;">
+    <!--Coloque sempre o gráfico em uma div, fica mais fácil para ajustar na página-->
+    <div class="meu-grafico">
+        <!--Gráfico virá aqui-->
+        <canvas id="myChart"></canvas>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    // ctx é o contexto. Onde é para o gráfico ser renderizado? 
+    // Na div myChart! Vamos selecioná-la por getElementById
+    var ctx = document.getElementById('myChart');
+
+    // ao criar um new Chart, colocamos ->
+    // (contexto, { type, data e options} )
+    var meuGrafico = new Chart(ctx, {
+        // TYPE -> qual o tipo do gráfico? será um gráfico de barras? linhas? define aqui
+        type: 'bar',
+
+        // DATA -> os dados renderizados no gráfico:
+        data: {
+            labels: [
+                'Fugir do tema',
+                'Não atingir número de linhas',
+                'Folha em branco',
+                'Cópia do texto motivador'
+            ],
+            datasets: [
+            {
+                label: '2020',
+                data: [11632, 20312, 11451, 28472],
+                borderColor: 'black',
+                backgroundColor: [
+                    '#555555',
+                    '#555555',
+                    '#555555',
+                    '#555555'
+                ],
+                hoverOffset: 4,
+            },    
+                
+            {
+                label: '2019',
+                data: [40624, 22902, 56945, 23265],
+                borderColor: 'black',
+                backgroundColor: [
+                    '#F84A7C',
+                    '#F84A7C',
+                    '#F84A7C',
+                    '#F84A7C' 
+                ],
+                hoverOffset: 4,
+            },
+
+            {
+                label: '2018',
+                data: [15392, 10275, 5487, 34579],
+                borderColor: 'black',
+                backgroundColor: [
+                    'black',
+                    'black',
+                    'black',
+                    'black'
+                ]
+            }]
+        },
+
+        // OPTIONS -> Opções globais
+        options: {
+
+            title: {
+                margin: 20,
+                // mostrar titulo?
+                display: true,
+                // tamanho do texto
+                fontSize: 20,
+                // texto no titulo
+                text: "Número de alunos que zeraram a redação do ENEM",
+                // onde? right? left? top?
+                position: 'top',
+                
+
+            },
+            legend: {
+                // mostrar legenda?
+                display: true,
+                // ao contrario? (dataset 1 depois de 2)
+                reverse: true,
+                // onde?
+                position: 'bottom'
+            },
+        }
+    })
+
+    // mudando cor de fonte de tudo
+    Chart.defaults.global.defaultFontColor = "#F84A7C";
+</script>
